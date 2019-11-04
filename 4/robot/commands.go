@@ -25,24 +25,24 @@ func (rcv UpdCoordinateCommand) Execute(robot *Robot) {
 	robot.MoveHistory = append(robot.MoveHistory, rcv.Location)
 }
 
-type PrintCurrentPosition struct{}
+type PrintCurrentPositionСommand struct{}
 
-func (rcv PrintCurrentPosition) Execute(robot *Robot) {
+func (rcv PrintCurrentPositionСommand) Execute(robot *Robot) {
 	fmt.Printf("Current position: X=%d; Y=%d\n", robot.Location.X, robot.Location.Y)
 }
 
-type PrintHistory struct{}
+type PrintHistoryCommand struct{}
 
-func (rcv PrintHistory) Execute(robot *Robot) {
+func (rcv PrintHistoryCommand) Execute(robot *Robot) {
 	fmt.Println("History:")
 	for index, loc := range robot.MoveHistory {
 		fmt.Printf("%d: %s\n", index, loc)
 	}
 }
 
-type CalculateTotalDistance struct{}
+type CalculateTotalDistanceCommand struct{}
 
-func (rcv CalculateTotalDistance) Execute(robot *Robot) {
+func (rcv CalculateTotalDistanceCommand) Execute(robot *Robot) {
 	var distance int
 
 	moveHistoryWithStartingPoint := append([]Location{{0, 0}}, robot.MoveHistory...)
@@ -54,6 +54,6 @@ func (rcv CalculateTotalDistance) Execute(robot *Robot) {
 	fmt.Printf("Total travelled distance: %d\n", distance)
 }
 
-func (rcv CalculateTotalDistance) calcDistance(start Location, end Location) int {
+func (rcv CalculateTotalDistanceCommand) calcDistance(start Location, end Location) int {
 	return int(math.Sqrt(math.Pow(float64(end.X-start.X), 2) + math.Pow(float64(end.Y-start.Y), 2)))
 }

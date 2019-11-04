@@ -25,9 +25,9 @@ func (rcv UpdCoordinateCommand) Execute(robot *Robot) {
 	robot.MoveHistory = append(robot.MoveHistory, rcv.Location)
 }
 
-type PrintCurrentPositionСommand struct{}
+type PrintCurrentPositionCommand struct{}
 
-func (rcv PrintCurrentPositionСommand) Execute(robot *Robot) {
+func (rcv PrintCurrentPositionCommand) Execute(robot *Robot) {
 	fmt.Printf("Current position: X=%d; Y=%d\n", robot.Location.X, robot.Location.Y)
 }
 
